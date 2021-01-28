@@ -42,7 +42,7 @@ public class NewReport2 {
     public void setExtent() {
 
         // specify location of the report
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(extentReportDirectory + fileSeparator + "Execution Results - " + timestamp + ".html");
+        htmlReporter = new ExtentHtmlReporter(extentReportDirectory + fileSeparator + "Execution Results - " + timestamp + ".html");
 
         htmlReporter.config().setDocumentTitle("Automation Report"); // Tile of report
         htmlReporter.config().setReportName("Functional Testing"); // Name of the report
@@ -52,9 +52,11 @@ public class NewReport2 {
         extent.attachReporter(htmlReporter);
 
         // Passing General information
+        extent.setSystemInfo("Application Name", "My Projects");
         extent.setSystemInfo("Build No", "101");
         extent.setSystemInfo("Environment", "QA");
-        extent.setSystemInfo("user", "nigel");
+        extent.setSystemInfo("OS", "Windows 10");
+        extent.setSystemInfo("Test Developer", "nigel");
 
     }
 
@@ -71,18 +73,18 @@ public class NewReport2 {
         driver.get("https://opensource-demo.orangehrmlive.com/");
     }
 
-    @Test(priority=2, description = "Verify that a valid user can login to the application")
-    public void testLogin(){
+    @Test(priority = 2, description = "Verify that a valid user can login to the application")
+    public void testLogin() {
 
         test = extent.createTest("verify valid login");
 
         driver.findElement(usernameTextBox).sendKeys("Admin");
         driver.findElement(passwordTextBox).sendKeys("admin123");
         driver.findElement(logInButton).click();
-        assertEquals(driver.findElement(By.id("welcome")).getText(), "Welcome Paul");
+        assertEquals(driver.findElement(By.id("welcome")).getText(), "Welcome Steven");
     }
 
-    @Test(priority=1, description = "Verify that an invalid user cannot login to the application")
+    @Test(priority = 1, description = "Verify that an invalid user cannot login to the application")
     public void testInvalidLogin() {
 
         test = extent.createTest("verify invalid login");
@@ -93,7 +95,7 @@ public class NewReport2 {
         assertEquals(driver.getTitle(), "OrangeHRM");
     }
 
-    @Test(priority=1, description = "Verify that an invalid user cannot login to the application")
+    @Test(priority = 1, description = "Verify that an invalid user cannot login to the application")
     public void testEmptyCredential() {
 
         test = extent.createTest("verify empty credential login");
@@ -148,23 +150,23 @@ public class NewReport2 {
     public void fakeTest4() {
         test = extent.createTest("This is a fake test #4");
 
-        test.createNode("Test case failed");
-        Assert.assertTrue(false);
+        test.createNode("Test case passed");
+        Assert.assertTrue(true);
 
-        test.createNode("Test case failed");
-        Assert.assertTrue(false);
+        test.createNode("Test case passed");
+        Assert.assertTrue(true);
 
-        test.createNode("Test case failed");
-        Assert.assertTrue(false);
+        test.createNode("Test case passed");
+        Assert.assertTrue(true);
 
-        test.createNode("Test case failed");
-        Assert.assertTrue(false);
+        test.createNode("Test case passed");
+        Assert.assertTrue(true);
 
-        test.createNode("Test case failed");
-        Assert.assertTrue(false);
+        test.createNode("Test case passed");
+        Assert.assertTrue(true);
 
-        test.createNode("Test case failed");
-        Assert.assertTrue(false);
+        test.createNode("Test case passed");
+        Assert.assertTrue(true);
     }
 
 
@@ -173,8 +175,8 @@ public class NewReport2 {
         if (result.getStatus() == ITestResult.FAILURE) {
             test.log(Status.FAIL, "TEST CASE FAILED IS " + result.getName()); // to add name in extent report
             test.log(Status.FAIL, "TEST CASE FAILED IS " + result.getThrowable()); // to add error/exception in extent report
-            String screenshotPath = NewReport.getScreenshot(driver, result.getName());
-            test.addScreenCaptureFromPath(screenshotPath);// adding screen shot
+            String screenshotPath = NewReport2.getScreenshot(driver, result.getName());
+            test.addScreenCaptureFromPath(screenshotPath);// adding screenshot
         } else if (result.getStatus() == ITestResult.SKIP) {
             test.log(Status.SKIP, "Test Case SKIPPED IS " + result.getName());
         } else if (result.getStatus() == ITestResult.SUCCESS) {
@@ -185,12 +187,12 @@ public class NewReport2 {
 
     //Take screenshots
     public static String getScreenshot(WebDriver driver, String screenshotName) throws IOException {
-        String dateName = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
+
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
 
         // after execution, you could see a folder "FailedTestsScreenshots" under src folder
-        String destination = System.getProperty("user.dir") + "/test-output/custom-report/" + screenshotName + dateName + ".png";
+        String destination = System.getProperty("user.dir") + fileSeparator + "test-output" + fileSeparator + "html-report" + fileSeparator + screenshotName + " - " + timestamp + ".png";
         File finalDestination = new File(destination);
         FileUtils.copyFile(source, finalDestination);
         return destination;
@@ -198,8 +200,7 @@ public class NewReport2 {
 
     static {
         fileSeparator = File.separator;
-        extentReportDirectory = System.getProperty("user.dir") + fileSeparator + "test-output" + fileSeparator + "custom-report";
+        extentReportDirectory = System.getProperty("user.dir") + fileSeparator + "test-output" + fileSeparator + "html-report";
         timestamp = (new SimpleDateFormat("yyyy-MM-dd HH-mm-ss")).format(new Date());
     }
-
 }
