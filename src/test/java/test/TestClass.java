@@ -42,7 +42,7 @@ public class TestClass {
         driver.findElement(usernameTextBox).sendKeys("Admin");
         driver.findElement(passwordTextBox).sendKeys("admin123");
         driver.findElement(logInButton).click();
-        assertEquals(driver.findElement(By.id("welcome")).getText(), "Welcome David");
+        assertEquals(driver.findElement(By.id("welcome")).getText(), "Welcome Paul");
     }
 
     @Test(priority=1, description = "Verify that an invalid user cannot login to the application")
