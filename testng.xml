@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression" parallel="none">
+
+    <listeners>
+        <listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"></listener>
+    </listeners>
+
+    <test name="extent-report-demo-2">
+        <classes>
+            <class name="test.TestClass">
+                <methods>
+                    <include name="testLogin"/>
+                    <include name="testInvalidLogin"/>
+                    <include name="testEmptyCredential"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
