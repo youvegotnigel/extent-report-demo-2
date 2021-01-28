@@ -49,7 +49,7 @@ extent.reporter.spark.config=
 extent.reporter.spark.out=test-output/SparkReport/Index.html
 ```
 
-3. Add "**Listeners**" in "***testng.xml*** file".
+3. Add "**Listeners**" in "***testNG.xml*** file".
 ```xml
   <listeners>
         <listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"></listener>
@@ -120,8 +120,7 @@ public class TestClass {
 
 ```
 
-
-5. An example "**TestNG.xml**" file.
+5. An example "**testNG.xml**" file.
 ```xml
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regression" parallel="none">
