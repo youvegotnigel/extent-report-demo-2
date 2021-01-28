@@ -38,7 +38,7 @@ public class NewReport {
         // specify location of the report
         //htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/custom-report/myReport.html");
 
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(extentReportDirectory + fileSeparator + "Execution Results - " + timestamp + ".html");
+        htmlReporter = new ExtentHtmlReporter(extentReportDirectory + fileSeparator + "Execution Results - " + timestamp + ".html");
 
         htmlReporter.config().setDocumentTitle("Automation Report"); // Tile of report
         htmlReporter.config().setReportName("Functional Testing"); // Name of the report
