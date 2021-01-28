@@ -15,6 +15,7 @@
                     <include name="testEmptyCredential"/>
                 </methods>
             </class>
+
         </classes>
     </test>
 
