@@ -121,7 +121,7 @@ public class TestClass {
 ```
 
 
-5. Create the "**TestNG.xml**" by adding the "**MaxSoft Extent Reporter listener**" class.
+5. An example "**TestNG.xml**" file.
 ```xml
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regression" parallel="none">
