@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression" parallel="none">
+
+    <test name="extent-report-demo-2">
+        <classes>
+
+            <class name="test.NewReport"></class>
+
+            <class name="test.NewReport2"></class>
+        </classes>
+    </test>
+
+</suite>
